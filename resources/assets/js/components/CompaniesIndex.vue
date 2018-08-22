@@ -2,7 +2,7 @@
 <div>
    <div class="row">
         <div class="col-md-12 mb-1">
-            <router-link v-bind:to="'/create'" class="btn btn-success float-right">Create Companies</router-link>     
+            <router-link :to="{ name: 'createCompanies' }" class="btn btn-success float-right">Create Companies</router-link>     
         </div>
         <div class="col-md-12">
             <div class="card">
@@ -19,13 +19,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="company, index in companies">
+                            <tr v-for="company, id in companies">
                                 <td>{{ company.name }}</td>
                                 <td>{{ company.address }}</td>
                                 <td>{{ company.website }}</td>
                                 <td>{{ company.email }}</td>
                                 <td>
-                                    <router-link v-bind:to="{ name: 'editCompany', params: { id: company.id } }" class="btn btn-info">Edit</router-link>
+                                    <router-link v-bind:to="{ name: 'editCompanies', params: { id: company.id } }" class="btn btn-info">Edit</router-link>
                                 </td>
                             </tr>
                         </tbody>

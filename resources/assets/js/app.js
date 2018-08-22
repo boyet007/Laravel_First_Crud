@@ -11,9 +11,9 @@ import CompaniesCreate from './components/CompaniesCreate.vue';
 import CompaniesEdit from './components/CompaniesEdit.vue';
 
 const routes = [
-    { path: '/', component:  CompaniesIndex },
-    { path: '/create', component: CompaniesCreate },
-    { path: '/edit', component:  CompaniesEdit }
+    { path: '/', component:  CompaniesIndex, name: 'indexCompanies' },
+    { path: '/create', component: CompaniesCreate, name: 'createCompanies' },
+    { path: '/edit/:id', component:  CompaniesEdit, name: 'editCompanies' }
 ];
 
 const router = new VueRouter({ routes: routes })
