@@ -92,5 +92,6 @@ class CompaniesController extends Controller
         $company = Company::findOrFail($id);
         $company->delete();
         return 404;
+        
     }
 }

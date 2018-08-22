@@ -50744,7 +50744,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50755,6 +50755,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -50809,6 +50810,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(resp);
             alert('Could not load companies data');
         });
+    },
+
+    methods: {
+        deleteEntry: function deleteEntry(id) {
+            if (confirm('Do you really want to delete it?')) {
+                var app = this;
+                axios.delete('api/v1/companies/' + id).then(function (resp) {
+                    // app.companies.splice(index, 1);
+                    app.$router.push({ path: '/' });
+                }).catch(function (resp) {
+                    alert('Could not delete company');
+                });
+            }
+        }
     }
 });
 
@@ -50864,7 +50879,7 @@ var render = function() {
                         _c(
                           "router-link",
                           {
-                            staticClass: "btn btn-info",
+                            staticClass: "btn btn-xs btn-info",
                             attrs: {
                               to: {
                                 name: "editCompanies",
@@ -50873,6 +50888,20 @@ var render = function() {
                             }
                           },
                           [_vm._v("Edit")]
+                        ),
+                        _vm._v(" \r\n                                    "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-xs btn-danger",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                _vm.deleteEntry(company.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
                         )
                       ],
                       1

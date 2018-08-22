@@ -25,7 +25,8 @@
                                 <td>{{ company.website }}</td>
                                 <td>{{ company.email }}</td>
                                 <td>
-                                    <router-link v-bind:to="{ name: 'editCompanies', params: { id: company.id } }" class="btn btn-info">Edit</router-link>
+                                    <router-link v-bind:to="{ name: 'editCompanies', params: { id: company.id } }" class="btn btn-xs btn-info">Edit</router-link>&nbsp;
+                                    <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteEntry(company.id)">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -54,6 +55,21 @@ export default {
             console.log(resp);
             alert('Could not load companies data');
         });
+    },
+    methods: {
+        deleteEntry(id) {
+            if(confirm('Do you really want to delete it?')) {
+                var app = this;
+                axios.delete('api/v1/companies/' + id)
+                .then(function(resp) {
+                    // app.companies.splice(index, 1);
+                    app.$router.push( {path: '/'} );
+                })
+                .catch(function(resp) {
+                    alert('Could not delete company');
+                });
+            }
+        }
     }
 };
 </script>
