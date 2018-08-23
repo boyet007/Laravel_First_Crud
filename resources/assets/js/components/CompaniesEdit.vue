@@ -29,7 +29,7 @@
                             <div class="offset-sm-2 col-sm-2">
                                 
                             </div>
-                            <button class="btn btn-success">Create</button>
+                            <button class="btn btn-success">Update</button>
                         </div>    
                     </form>
                 </div>
@@ -40,6 +40,11 @@
 </template>
 
 <script>
+
+function getRecords() {
+        
+}
+
 export default {
     mounted() {
         let app = this;

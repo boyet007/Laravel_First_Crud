@@ -50744,7 +50744,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -50803,23 +50803,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var app = this;
-        axios.get('/api/v1/companies').then(function (resp) {
-            app.companies = resp.data;
-        }).catch(function (resp) {
-            console.log(resp);
-            alert('Could not load companies data');
-        });
+        this.getRecords();
     },
 
     methods: {
-        deleteEntry: function deleteEntry(id) {
+        getRecords: function getRecords() {
+
+            var app = this;
+            axios.get('/api/v1/companies').then(function (resp) {
+                console.log('record berhasil di dapatkan');
+                app.companies = resp.data;
+            }).catch(function (resp) {
+                console.log(resp);
+                alert('Could not load companies data');
+            });
+        },
+        deleteEntry: function deleteEntry(id, index) {
             if (confirm('Do you really want to delete it?')) {
                 var app = this;
                 axios.delete('api/v1/companies/' + id).then(function (resp) {
-                    // app.companies.splice(index, 1);
-                    app.$router.push({ path: '/' });
+                    app.companies.splice(index, 1);
                 }).catch(function (resp) {
+                    //console.log(resp);
                     alert('Could not delete company');
                 });
             }
@@ -50863,7 +50868,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.companies, function(company, id) {
+                _vm._l(_vm.companies, function(company, index) {
                   return _c("tr", [
                     _c("td", [_vm._v(_vm._s(company.name))]),
                     _vm._v(" "),
@@ -50897,7 +50902,7 @@ var render = function() {
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
-                                _vm.deleteEntry(company.id)
+                                _vm.deleteEntry(company.id, index)
                               }
                             }
                           },
@@ -51407,7 +51412,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51459,6 +51464,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
+function getRecords() {}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -51694,7 +51702,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "form-group row" }, [
       _c("div", { staticClass: "offset-sm-2 col-sm-2" }),
       _vm._v(" "),
-      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Create")])
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Update")])
     ])
   }
 ]
